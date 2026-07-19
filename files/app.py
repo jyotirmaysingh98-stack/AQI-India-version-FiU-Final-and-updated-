@@ -26,6 +26,27 @@ import streamlit as st
 import plotly.graph_objects as go
 import plotly.express as px
 
+st.title("AQI India – Statewise & Live API")
+
+datasets = data_loader.load_all_datasets()
+dataful_df = datasets["dataful_statewise"]
+realtime_kaggle_df = datasets["kaggle_realtime"]
+
+states = data_loader.states_available(dataful_df)
+state = st.selectbox("Select State", states)
+
+cities = data_loader.cities_in_state(dataful_df, state)
+city = st.selectbox("Select City", cities)
+
+if st.button("Show historical & live"):
+    hist_df = dataful_df[(dataful_df.state == state) & (dataful_df.city == city)].copy()
+    hist_df = hist_df.sort_values("date")
+    st.line_chart(hist_df.set_index("date")["AQI"])
+
+    live_df = data_loader.fetch_latest_realtime_data(state=state, city=city, hours=24)
+    live_df = live_df.sort_values("date")
+    st.line_chart(live_df.set_index("date")["AQI"])
+
 from data_loader import (LOADERS, DATASET_INFO, load_dataset, states_available,
                           cities_in_state, fetch_latest_realtime_data, CITY_STATE_MAP, ALL_STATES)
 from models import (quick_forecast, compute_state_features, cluster_states,
