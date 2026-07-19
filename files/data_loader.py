@@ -24,8 +24,8 @@ PATH_DATAFUL_STATEWISE   = "/content/data/dataful_statewise_aqi.csv"          # 
 PATH_DATAGOV_POLLUTANTS  = "/content/data/datagov_historical_pollutants.csv"  # dataset 2
 PATH_KAGGLE_BHAUTIK      = "/content/data/bhautik_2022_2025.csv"              # dataset 3
 PATH_KAGGLE_ISHANKAT     = "/content/data/ishankat_realtime_2023_2025.csv"    # dataset 4
-REALTIME_API_URL         = "https://api.data.gov.in/resource/REPLACE_WITH_RESOURCE_ID"  # dataset 5
-REALTIME_API_KEY         = os.environ.get("DATA_GOV_API_KEY", "REPLACE_WITH_YOUR_KEY")
+REALTIME_API_URL = "https://api.data.gov.in/resource/3b01bcb8-0b14-4abf-b6f2-c1bfd384ba69"
+REALTIME_API_KEY = os.environ.get("DATA_GOV_API_KEY", "YOUR_DATA_GOV_API_KEY")
 
 POLLUTANTS = ["PM2.5", "PM10", "NO2", "SO2", "CO", "O3"]
 
